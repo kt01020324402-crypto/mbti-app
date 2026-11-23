@@ -20,6 +20,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - 3D 캐릭터는 React Three Fiber 로, 데이터베이스와 로그인은 Supabase 로 만들 예정이다. 요청하기 전에는 미리 설치하지 않는다
 - 화면에 보이는 글은 모두 한국어
 - 휴대폰 화면(가로 375px)에서 먼저 보기 좋게 만든다
+- Supabase 는 브라우저에서 `supabase-js` 로 직접 호출하는 단순한 구조만 사용한다 (`@supabase/ssr`, 미들웨어/proxy, 서버 액션, 서버 쪽 인증은 쓰지 않는다)
+- 비밀 키(`sb_secret_` 로 시작하는 키, `service_role` 키)와 DB 비밀번호는 프로젝트 어디에도 넣지 않는다
 
 ## 작업 방식
 - 요청한 범위만 작업한다. 요청하지 않은 기능이나 페이지는 만들지 않는다
