@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { MBTI_TYPES, type MbtiTypeCode } from "@/data/types";
 import ShareResultButton from "@/components/ShareResultButton";
+import CharacterViewer from "@/components/three/CharacterViewer";
 
 // 들어온 문자열이 16가지 MBTI 유형 코드 중 하나인지 확인하는 도우미 함수입니다.
 function isValidMbtiType(value: string): value is MbtiTypeCode {
@@ -58,13 +59,14 @@ async function ResultContent({
         <p className="mt-2 text-lg font-bold text-slate-800">{info.nickname}</p>
       </section>
 
-      {/* 2) 캐릭터 자리: 대표 색상 배경의 둥근 상자 안에 캐릭터 이름만 표시 */}
+      {/* 2) 캐릭터 자리: 해당 유형의 3D 동물 캐릭터와 캐릭터 이름 */}
       <section
         aria-label="캐릭터 영역"
-        style={{ backgroundColor: info.color }}
-        className="flex h-48 flex-col items-center justify-center rounded-3xl px-6 text-center shadow-[0_10px_26px_rgba(15,23,42,0.08)]"
+        style={{ backgroundColor: `${info.color}88` }}
+        className="flex flex-col items-center justify-center rounded-3xl px-4 pb-5 pt-2 text-center shadow-[0_10px_26px_rgba(15,23,42,0.08)]"
       >
-        <p className="text-2xl font-bold text-slate-900">
+        <CharacterViewer typeCode={info.code} heightClass="h-[300px]" />
+        <p className="mt-1 text-lg font-bold text-slate-900">
           {info.character.name}
         </p>
       </section>
