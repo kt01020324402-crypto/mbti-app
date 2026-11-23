@@ -8,8 +8,8 @@ export default function Header() {
   const { user, loading, signOut } = useAuth();
 
   return (
-    <header className="sticky top-0 z-10 border-b border-emerald-100/80 bg-white/80 px-3.5 py-3.5 backdrop-blur-md sm:px-4">
-      <div className="flex items-center justify-between gap-1.5">
+    <header className="sticky top-0 z-10 border-b border-emerald-100/80 bg-white/80 px-3 py-3.5 backdrop-blur-md sm:px-4">
+      <div className="flex items-center justify-between gap-1">
         {/* 왼쪽: 서비스 이름 (누르면 첫 화면으로 이동합니다) */}
         <Link
           href="/"
@@ -22,12 +22,19 @@ export default function Header() {
         </Link>
 
         {/* 오른쪽: 메뉴 영역 (375px 휴대폰 화면에서도 한 줄에 넘치지 않게 배치합니다) */}
-        <nav aria-label="주 메뉴" className="flex shrink-0 items-center gap-1.5">
+        <nav aria-label="주 메뉴" className="flex shrink-0 items-center gap-1">
           <Link
             href="/types"
-            className="whitespace-nowrap rounded-full bg-emerald-50 px-2.5 py-1.5 text-xs font-medium text-emerald-700 shadow-sm transition-colors hover:bg-emerald-100 sm:px-3 sm:text-sm"
+            className="whitespace-nowrap rounded-full bg-emerald-50 px-2 py-1.5 text-[11px] font-medium text-emerald-700 shadow-sm transition-colors hover:bg-emerald-100 sm:px-3 sm:text-sm"
           >
             유형 도감
+          </Link>
+
+          <Link
+            href="/stats"
+            className="whitespace-nowrap rounded-full bg-emerald-50 px-2 py-1.5 text-[11px] font-medium text-emerald-700 shadow-sm transition-colors hover:bg-emerald-100 sm:px-3 sm:text-sm"
+          >
+            통계
           </Link>
 
           {/* 로그인 상태를 확인하는 짧은 순간에는 자리를 비워 두어 깜빡임을 막습니다 */}
@@ -36,14 +43,14 @@ export default function Header() {
               <>
                 <Link
                   href="/mypage"
-                  className="whitespace-nowrap rounded-full bg-emerald-50 px-2.5 py-1.5 text-xs font-medium text-emerald-800 shadow-sm transition-colors hover:bg-emerald-100 sm:px-3 sm:text-sm"
+                  className="whitespace-nowrap rounded-full bg-emerald-50 px-2 py-1.5 text-[11px] font-medium text-emerald-800 shadow-sm transition-colors hover:bg-emerald-100 sm:px-3 sm:text-sm"
                 >
                   마이페이지
                 </Link>
                 <button
                   type="button"
                   onClick={signOut}
-                  className="whitespace-nowrap rounded-full border border-emerald-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition-colors hover:bg-emerald-50 sm:px-3 sm:text-sm"
+                  className="whitespace-nowrap rounded-full border border-emerald-200 bg-white px-2 py-1.5 text-[11px] font-medium text-slate-700 shadow-sm transition-colors hover:bg-emerald-50 sm:px-3 sm:text-sm"
                 >
                   로그아웃
                 </button>
@@ -51,7 +58,7 @@ export default function Header() {
             ) : (
               <Link
                 href="/login"
-                className="inline-block whitespace-nowrap rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-medium text-white shadow-sm transition-colors hover:bg-emerald-600 sm:text-sm"
+                className="inline-block whitespace-nowrap rounded-full bg-emerald-500 px-2.5 py-1.5 text-[11px] font-medium text-white shadow-sm transition-colors hover:bg-emerald-600 sm:px-3 sm:text-sm"
               >
                 로그인
               </Link>
