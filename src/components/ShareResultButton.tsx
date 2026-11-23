@@ -26,7 +26,7 @@ export default function ShareResultButton({ accentColor }: { accentColor: string
         type="button"
         onClick={handleCopy}
         style={{ backgroundColor: accentColor }}
-        className="w-full rounded-2xl px-5 py-4 text-base font-bold text-slate-800 shadow-[0_8px_20px_rgba(15,23,42,0.08)] transition-all hover:-translate-y-0.5 active:translate-y-0"
+        className="w-full whitespace-nowrap rounded-2xl px-3 py-4 text-sm font-bold text-slate-800 shadow-[0_8px_20px_rgba(15,23,42,0.08)] transition-all hover:-translate-y-0.5 active:translate-y-0 sm:px-5 sm:text-base"
       >
         결과 공유하기
       </button>

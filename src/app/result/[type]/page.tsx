@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { MBTI_TYPES, type MbtiTypeCode } from "@/data/types";
 import ShareResultButton from "@/components/ShareResultButton";
@@ -8,6 +9,35 @@ import CharacterViewer from "@/components/three/CharacterViewer";
 // 들어온 문자열이 16가지 MBTI 유형 코드 중 하나인지 확인하는 도우미 함수입니다.
 function isValidMbtiType(value: string): value is MbtiTypeCode {
   return value in MBTI_TYPES;
+}
+
+// 결과 페이지의 유형 코드에 맞게 제목, 설명, Open Graph 미리보기를 동적으로 만듭니다.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ type: string }>;
+}): Promise<Metadata> {
+  const { type } = await params;
+  const code = type.toUpperCase();
+
+  if (!isValidMbtiType(code)) {
+    return {
+      title: "없는 유형 | 몽글 MBTI",
+      description: "요청하신 성격 유형을 찾을 수 없어요.",
+    };
+  }
+
+  const info = MBTI_TYPES[code];
+  const title = `${info.code} ${info.nickname} | 몽글 MBTI`;
+
+  return {
+    title,
+    description: info.summary,
+    openGraph: {
+      title,
+      description: info.summary,
+    },
+  };
 }
 
 // URL의 [type] 값을 읽어 결과 화면을 그려 주는 내부 컴포넌트입니다.
@@ -149,7 +179,7 @@ async function ResultContent({
         <div className="flex items-start gap-3">
           <Link
             href="/test"
-            className="flex-1 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-center text-base font-bold text-slate-700 shadow-[0_6px_18px_rgba(15,23,42,0.05)] transition-all hover:-translate-y-0.5 hover:bg-slate-50"
+            className="flex-1 whitespace-nowrap rounded-2xl border border-slate-200 bg-white px-3 py-4 text-center text-sm font-bold text-slate-700 shadow-[0_6px_18px_rgba(15,23,42,0.05)] transition-all hover:-translate-y-0.5 hover:bg-slate-50 sm:px-5 sm:text-base"
           >
             다시 검사하기
           </Link>

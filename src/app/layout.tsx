@@ -4,11 +4,19 @@ import { AuthProvider } from "@/components/AuthProvider";
 import Header from "@/components/Header";
 import "./globals.css";
 
-// 브라우저 탭 제목과 검색 엔진용 설명을 설정합니다.
+// 브라우저 탭 제목, 검색 엔진 설명, 링크 공유 미리보기(Open Graph)를 설정합니다.
 export const metadata: Metadata = {
   title: "몽글 MBTI | 나의 3D 동물 성격 유형 찾기",
   description:
     "12개 질문에 답하고 16가지 성격 유형과 귀여운 3D 동물 캐릭터를 만나보세요.",
+  openGraph: {
+    title: "몽글 MBTI | 나의 3D 동물 성격 유형 찾기",
+    description:
+      "12개 질문에 답하고 16가지 성격 유형과 귀여운 3D 동물 캐릭터를 만나보세요.",
+    siteName: "몽글 MBTI",
+    locale: "ko_KR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
