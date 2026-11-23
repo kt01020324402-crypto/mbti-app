@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { MBTI_TYPES, type MbtiTypeCode } from "@/data/types";
 import ShareResultButton from "@/components/ShareResultButton";
+import SaveResultButton from "@/components/SaveResultButton";
 import CharacterViewer from "@/components/three/CharacterViewer";
 
 // 들어온 문자열이 16가지 MBTI 유형 코드 중 하나인지 확인하는 도우미 함수입니다.
@@ -141,16 +142,20 @@ async function ResultContent({
         </div>
       </section>
 
-      {/* 6) 버튼 2개: 다시 검사하기, 결과 공유하기 */}
-      <section className="flex items-start gap-3 pt-1">
-        <Link
-          href="/test"
-          className="flex-1 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-center text-base font-bold text-slate-700 shadow-[0_6px_18px_rgba(15,23,42,0.05)] transition-all hover:-translate-y-0.5 hover:bg-slate-50"
-        >
-          다시 검사하기
-        </Link>
+      {/* 6) 내 기록에 저장 버튼 + 다시 검사하기 / 결과 공유하기 버튼 */}
+      <section className="flex flex-col gap-3 pt-1">
+        <SaveResultButton mbtiType={info.code} />
 
-        <ShareResultButton accentColor={info.color} />
+        <div className="flex items-start gap-3">
+          <Link
+            href="/test"
+            className="flex-1 rounded-2xl border border-slate-200 bg-white px-5 py-4 text-center text-base font-bold text-slate-700 shadow-[0_6px_18px_rgba(15,23,42,0.05)] transition-all hover:-translate-y-0.5 hover:bg-slate-50"
+          >
+            다시 검사하기
+          </Link>
+
+          <ShareResultButton accentColor={info.color} />
+        </div>
       </section>
     </div>
   );
